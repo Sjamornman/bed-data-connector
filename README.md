@@ -75,3 +75,18 @@ npm start
 - เธกเธต retry เน€เธกเธทเนเธญเธชเนเธเนเธกเนเธเนเธฒเธ (`RETRY_COUNT`, `RETRY_DELAY_MS`)
 - เธเธฑเธเธเธฒเธเธเนเธญเธ: เธ–เนเธฒเธฃเธญเธเธเนเธญเธเธขเธฑเธเนเธกเนเธเธ เธฃเธญเธเนเธซเธกเนเธเธฐ queue pending แล้วส่งทันทีเมื่อรอบปัจจุบันจบ
 
+git add .
+git commit -m "update ..."
+git push
+
+git clone https://github.com/Sjamornman/bed-data-connector.git
+cd bed-data-connector
+npm ci --include=dev
+npm run build
+
+pm2 start dist\index.js --name nbod-5110
+
+git pull
+npm ci --include=dev
+npm run build
+pm2 restart nbod-5110
