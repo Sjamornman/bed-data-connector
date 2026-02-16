@@ -1,0 +1,23 @@
+{
+  "name": "bed-data-connector",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hospital-local connector for sending bed data to central API",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "start:dev": "ts-node src/index.ts",
+    "start:once": "ts-node src/index.ts --once"
+  },
+  "dependencies": {
+    "mysql2": "^3.14.5",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.19",
+    "@types/pg": "^8.11.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
