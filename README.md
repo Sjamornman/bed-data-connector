@@ -75,10 +75,6 @@ npm start
 - มี retry เมื่อส่งไม่ผ่าน (`RETRY_COUNT`, `RETRY_DELAY_MS`)
 - กันงานซ้อน: ถ้ารอบก่อนยังไม่จบ รอบใหม่จะ queue pending แล้วส่งทันทีเมื่อรอบปัจจุบันจบ
 
-git add .
-git commit -m "update ..."
-git push
-
 git clone https://github.com/Sjamornman/bed-data-connector.git
 cd bed-data-connector
 npm ci --include=dev
