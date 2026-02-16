@@ -7,10 +7,21 @@
 
 ## 1) สิ่งที่ต้องมีบนเครื่องปลายทาง
 
-- Node.js (แนะนำ LTS)
+- Node.js (แนะนำ LTS 20.x หรือใหม่กว่า)
 - npm
 - Git (ถ้าจะ `git clone` / `git pull`)
 - PM2 (ถ้าจะรันเป็น service)
+
+### ตรวจสอบว่าติดตั้งแล้วหรือยัง
+
+```bash
+node -v
+npm -v
+git --version
+pm2 -v
+```
+
+ถ้าคำสั่งไหนขึ้นว่าไม่พบคำสั่ง (`not recognized`/`command not found`) แปลว่ายังไม่ได้ติดตั้ง
 
 ## 2) ติดตั้งครั้งแรก (Windows + PM2)
 
