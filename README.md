@@ -34,9 +34,6 @@ npm run build
 npm install -g pm2
 npm install -g pm2-windows-startup
 pm2-startup install
-
-pm2 start dist\index.js --name nbod-5110
-pm2 save
 ```
 
 ## 3) ตั้งค่า `.env`
@@ -60,7 +57,14 @@ copy .env.example .env
   (หรือเดาเป็น `hosxp_v4` เมื่อ `HIS_NAME` มี `v4`)
 - `HIS_DB_*`: การเชื่อมฐานข้อมูล HIS โรงพยาบาล
 
-## 4) รูปแบบ SQL ที่ต้องได้
+## 4) เริ่มรันด้วย PM2
+
+```bash
+pm2 start dist\index.js --name nbod-5110
+pm2 save
+```
+
+## 5) รูปแบบ SQL ที่ต้องได้
 
 ไฟล์ `src/his-query.ts` ต้องคืนคอลัมน์:
 
@@ -81,13 +85,13 @@ FROM his_bed_view
 WHERE is_active = 1
 ```
 
-## 5) พฤติกรรมการส่งข้อมูล
+## 6) พฤติกรรมการส่งข้อมูล
 
 - interval เริ่มต้นทุก 30 นาที (`SEND_INTERVAL_MINUTES`) และส่งตามเข็มนาฬิกา (เช่น `00/30`)
 - มี retry เมื่อส่งไม่ผ่าน (`RETRY_COUNT`, `RETRY_DELAY_MS`)
 - กันงานซ้อน: ถ้ารอบก่อนยังไม่จบ รอบใหม่จะ queue pending แล้วส่งทันทีเมื่อรอบปัจจุบันจบ
 
-## 6) อัปเดตเวอร์ชันถัดไป
+## 7) อัปเดตเวอร์ชันถัดไป
 
 ```bash
 git pull
