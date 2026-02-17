@@ -58,8 +58,16 @@ function hisProfile(name: string): "hosxp_v3" | "hosxp_v4" {
 }
 
 export function loadConfig(): ConnectorConfig {
+  const apiReceiveUrl = required("API_RECEIVE_URL");
+  const parsedApiUrl = new URL(apiReceiveUrl);
+  if (parsedApiUrl.protocol !== "https:") {
+    throw new Error(
+      `Invalid API_RECEIVE_URL protocol: ${parsedApiUrl.protocol}. Allowed: https only`
+    );
+  }
+
   return {
-    apiReceiveUrl: required("API_RECEIVE_URL"),
+    apiReceiveUrl,
     hcode: required("HCODE"),
     hcodeToken: required("HCODE_TOKEN"),
     hisName: required("HIS_NAME"),

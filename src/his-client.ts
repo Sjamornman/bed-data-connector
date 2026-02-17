@@ -8,7 +8,10 @@ export class HisClient {
   private readonly pool: SupportedPool;
   private readonly dbType: ConnectorConfig["hisDbType"];
 
-  constructor(config: { dbType: ConnectorConfig["hisDbType"]; db: ConnectorConfig["hisDb"] }) {
+  constructor(config: {
+    dbType: ConnectorConfig["hisDbType"];
+    db: ConnectorConfig["hisDb"];
+  }) {
     this.dbType = config.dbType;
 
     if (this.dbType === "postgres") {

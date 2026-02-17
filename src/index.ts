@@ -22,6 +22,11 @@ let pendingRound = false;
 let intervalHandle: NodeJS.Timeout | null = null;
 let startupTimerHandle: NodeJS.Timeout | null = null;
 
+function summarizeTarget(url: string): string {
+  const parsed = new URL(url);
+  return `${parsed.protocol}//${parsed.host}`;
+}
+
 function sleep(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms));
 }
@@ -79,13 +84,11 @@ async function sendCurrentSnapshot() {
         );
 
         if (!result.ok) {
-          throw new Error(
-            `API ${result.status}: ${typeof result.data === "string" ? result.data : JSON.stringify(result.data)}`
-          );
+          throw new Error(`API ${result.status}`);
         }
 
         logger.info(
-          `Success hcode=${config.hcode}, wards=${ward.length}, response=${JSON.stringify(result.data)}`
+          `Success hcode=${config.hcode}, wards=${ward.length}, status=${result.status}`
         );
         return;
       } catch (error) {
@@ -142,7 +145,7 @@ function startScheduler() {
   );
 
   logger.info(
-    `Connector started. his=${config.hisName}, profile=${config.hisProfile}, dbType=${config.hisDbType}, hcode=${config.hcode}, interval=${config.sendIntervalMinutes}m, offset=${safeOffsetMinutes}m, target=${config.apiReceiveUrl}`
+    `Connector started. his=${config.hisName}, profile=${config.hisProfile}, dbType=${config.hisDbType}, hcode=${config.hcode}, interval=${config.sendIntervalMinutes}m, offset=${safeOffsetMinutes}m, target=${summarizeTarget(config.apiReceiveUrl)}`
   );
   requestSend("startup-immediate");
   logger.info(

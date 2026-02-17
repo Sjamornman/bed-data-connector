@@ -46,7 +46,7 @@ copy .env.example .env
 
 ค่าที่สำคัญ:
 
-- `API_RECEIVE_URL`: URL ปลายทาง เช่น `http://your-api:3000/api/receive`
+- `API_RECEIVE_URL`: URL ปลายทาง แนะนำ `https://your-api:3000/api/receive`
 - `HCODE`: รหัสโรงพยาบาล
 - `HCODE_TOKEN`: token ของโรงพยาบาลนั้น
 - `LATITUDE`, `LONGITUDE`: พิกัดโรงพยาบาล (optional)
